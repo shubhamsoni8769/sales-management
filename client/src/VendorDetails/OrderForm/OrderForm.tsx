@@ -1,4 +1,4 @@
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Field, FieldArray, Form, Formik } from "formik";
 import React from "react";
 import AutoComplateField from "../../common-component/AutoComplete";
@@ -37,84 +37,110 @@ const CreateOrder = () => {
                   values.itemList.length > 0 &&
                   values.itemList.map((item, index) => (
                     <div key={index}>
-                      <Field
-                        name={`itemList.${index}.medicineName`}
-                        component={AutoComplateField}
-                        label="Medicine Name"
-                        index={index}
-                        id="medicineName"
-                        setFieldValue= {setFieldValue}
-                      />
-                      <Field
-                        name={`itemList.${index}.hsnCode`}
-                        component={inputTextField}
-                        label="HSN Code"
-                        index={index}
-                        id="hsnCode"
-                      />
-                      <Field
-                        name={`itemList.${index}.companyName`}
-                        label="Company Name"
-                        component={inputTextField}
-                        index={index}
-                        id="companyName"
-                      />
-                      <Field
-                        name={`itemList.${index}.batchNumber`}
-                        label="Batch Number"
-                        component={inputNumberField}
-                        index={index}
-                        id="batchNumber"
-                      />
-                      <Field
-                        name={`itemList.${index}.expiryDate`}
-                        component={inputDateField}
-                        clearable={true}
-                        index={index}
-                        label=""
-                        format="dd/MM/yyyy"
-                      />
-                      <Field
-                        name={`itemList.${index}.availableQuantity`}
-                        label="Available Quantity"
-                        type="number"
-                        required
-                        component={inputNumberField}
-                        index={index}
-                        id="availableQuantity"
-                      />
-                      <Field
-                        name={`itemList.${index}.scheme`}
-                        label="Scheme"
-                        component={inputNumberField}
-                        index={index}
-                        id="scheme"
-                      />
-                      <Field
-                        name={`itemList.${index}.purchaseRate`}
-                        label="Purchase Rate"
-                        component={inputNumberField}
-                        index={index}
-                        id="purchaseRate"
-                      />
-                      <Field
-                        name={`itemList.${index}.salesRate`}
-                        label="Sales Rate"
-                        component={inputNumberField}
-                        index={index}
-                        id="salesRate"
-                      />
-                      <Button
-                        type="button"
-                        variant="contained"
-                        onClick={() => arrayHelpers.remove(index)}
-                      > - </Button>
-
+                      <Grid container spacing={2}>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.medicineName`}
+                            component={AutoComplateField}
+                            label="Medicine Name"
+                            index={index}
+                            id="medicineName"
+                            setFieldValue={setFieldValue}
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.hsnCode`}
+                            component={inputTextField}
+                            label="HSN Code"
+                            index={index}
+                            id="hsnCode"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.companyName`}
+                            label="Company Name"
+                            component={inputTextField}
+                            index={index}
+                            id="companyName"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.batchNumber`}
+                            label="Batch Number"
+                            component={inputNumberField}
+                            index={index}
+                            id="batchNumber"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.expiryDate`}
+                            component={inputDateField}
+                            clearable={true}
+                            index={index}
+                            label=""
+                            format="dd/MM/yyyy"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.availableQuantity`}
+                            label="Available Quantity"
+                            type="number"
+                            required
+                            component={inputNumberField}
+                            index={index}
+                            id="availableQuantity"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.scheme`}
+                            label="Scheme"
+                            component={inputNumberField}
+                            index={index}
+                            id="scheme"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.purchaseRate`}
+                            label="Purchase Rate"
+                            component={inputNumberField}
+                            index={index}
+                            id="purchaseRate"
+                          />
+                        </Grid>
+                        <Grid item xs={1.33}>
+                          <Field
+                            name={`itemList.${index}.salesRate`}
+                            label="Sales Rate"
+                            component={inputNumberField}
+                            index={index}
+                            id="salesRate"
+                          />
+                        </Grid>
+                        <Grid item xs={1}>
+                          <Button
+                            type="button"
+                            variant="contained"
+                            onClick={() => arrayHelpers.remove(index)}
+                          > - </Button>
+                        </Grid>
+                      </Grid>
                     </div>
                   ))}
-                <Button type="button" variant="contained" onClick={() => arrayHelpers.push(item)}> + </Button>
+                <Button
+                  type="button"
+                  variant="contained"
+                  onClick={() => arrayHelpers.push(item)}
+                > + </Button>
                 <div>
-                  <Button type="submit"> Submit </Button>
+                  <Button type="submit" variant="contained"
+                    onClick={() => console.log('submit')}> Submit </Button>
                 </div>
               </div>
             )}

@@ -20,7 +20,7 @@ const AutoComplateField = (props: any) => {
         <Autocomplete
             id={id}
             options={["a", "b", "c"]}
-            style={{ width: 300 }}
+            style={{ width: 100 }}
             onChange={(e, value) => {
                 setFieldValue(
                     props.field.name,
