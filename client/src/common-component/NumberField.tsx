@@ -24,6 +24,7 @@ const inputNumberField = (props: any) => {
         name={props.field.name}
         label={props.label}
         type="number"
+        margin="normal"
         onChange={props.field.onChange}
         error={err && touch}
         value={values[item][index][name]}

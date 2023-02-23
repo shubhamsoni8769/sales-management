@@ -21,6 +21,7 @@ const inputDateField = (props: any) => {
         fullWidth
         id={id}
         name={props.field.name}
+        margin="normal"
         label={props.label}
         type="date"
         onChange={props.field.onChange}
