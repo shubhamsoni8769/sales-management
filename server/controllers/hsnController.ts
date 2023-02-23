@@ -1,12 +1,21 @@
+import { Request, Response } from "express";
 import HsnModel from "../schema/HsnCodeSchema.js"
+import { asyncErrorHandler } from "../helpers/asyncErrorHandler.js";
 
-export const addHsnCode = async (req, res) => {
+export const addHsnCode = asyncErrorHandler(async (req:Request, res:Response) => {
     const {code, gst} = req.body;
     const newHsn = await HsnModel.create({code, gst});
     res.json({status:'ok' ,hsnCode: newHsn });
-}
+})
 
-export const getHsnCode = async (req, res) => {
+export const getHsnCode = asyncErrorHandler(async (req:Request, res:Response) => {
    const hsncodes = await HsnModel.find();
     res.json({hsncodes, status:'ok'});
-} 
+} )
+
+export const getHsnCodeById = asyncErrorHandler(async (req:Request, res:Response) => {
+    console.log('its here!!!');
+    const {id} = req.query;
+    const hsncode = await HsnModel.find({_id:id});
+     res.json({hsncode, status:'ok'});
+ } )
