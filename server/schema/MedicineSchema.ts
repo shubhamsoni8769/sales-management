@@ -8,6 +8,7 @@ export interface Medicine {
     saltName: String;
     companyId: Company;
     gst: number;
+    hsnCode: String;
 }
 
 
@@ -23,9 +24,21 @@ const medicineSchema = new Schema<Medicine>({
     companyId:{
         type: mongoose.Schema.Types.ObjectId, ref:'Company'
     },
+    hsnCode:String,
     gst: Number
 })
 
 const MedicineModel = mongoose.model('Medicine', medicineSchema);
 
 export default MedicineModel;
+
+/**  
+Api Body for medicine
+{
+    medicineName: String.
+    saltName: String,
+    companyId: ObjectId, // Referenced field
+    hsnCode: string,
+    gst: string;
+}   
+*/
