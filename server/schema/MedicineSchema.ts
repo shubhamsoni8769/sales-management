@@ -1,32 +1,31 @@
-import mongoose, { Schema, SchemaTypes, Types } from 'mongoose';
+import mongoose, { ObjectId, Schema, SchemaTypes, Types } from 'mongoose';
 import { Company } from './CompanySchema';
+import { HsnCode } from './HsnCodeSchema';
 
 // Document interface
 export interface Medicine {
-    name: String;
+    medicineName: String;
     saltName: String;
-    companyName: Company;
-    batchNbr: String;
+    companyId: Company;
+    gst: number;
 }
 
 
 const medicineSchema = new Schema<Medicine>({
-    name:{
+    medicineName:{
         type: String,
         required: true,
     },
     saltName:{
         type: String,
-        required:true
+        required: true
     },
-    companyName:{
-        type: mongoose.Schema.Types.ObjectId, ref:'Com'
+    companyId:{
+        type: mongoose.Schema.Types.ObjectId, ref:'Company'
     },
-    batchNbr: String
-    
+    gst: Number
 })
 
+const MedicineModel = mongoose.model('Medicine', medicineSchema);
 
-const medicineModel = mongoose.model('Medicine', medicineSchema);
-
-export default medicineModel;
+export default MedicineModel;

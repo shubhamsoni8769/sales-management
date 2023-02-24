@@ -7,8 +7,7 @@ import { app } from './app.js';
 
 config(); // puts .env keys and values in process.env
 const PORT = process.env.PORT || 5000;
-const connectString = process.env.MONGODB_URI;
-
+const connectString = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 
 
 // 'mongodb+srv://test:test@dummycluster.bh0bnm6.mongodb.net/salesManagement';
