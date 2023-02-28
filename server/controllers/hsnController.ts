@@ -14,8 +14,13 @@ export const getHsnCode = asyncErrorHandler(async (req:Request, res:Response) =>
 } )
 
 export const getHsnCodeById = asyncErrorHandler(async (req:Request, res:Response) => {
-    console.log('its here!!!');
     const {id} = req.query;
     const hsncode = await HsnModel.find({_id:id});
      res.json({hsncode, status:'ok'});
  } )
+
+ export const deleteHsnById = asyncErrorHandler(async (req:Request, res:Response) => {
+    const {id} = req.query; 
+    const deletedHsnCode = (await HsnModel.findOne({_id:id})).delete();
+    res.json({status:'ok', hsn: deletedHsnCode });
+})

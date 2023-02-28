@@ -18,13 +18,15 @@ export const getAllMedicine = asyncErrorHandler(async (req: Request, res: Respon
     res.json({medicines, status:'ok'});
 })
 
-export const getMedicineByName = asyncErrorHandler(async (req: Request, res: Response) => {
-    const {medicineName} = req.body;
-    const medicines = await MedicineModel.findOne({medicineName}).populate('companyId');
-     res.json({medicines, status:'ok'});
- } )
-
 export const deleteMedicineById = asyncErrorHandler(async (req, res) => {
-    // const hsncodes = await HsnModel.find();
-    //  res.json({hsncodes, status:'ok'});
- } )
+    const {id} = req.query; 
+    const deletedMedicine = (await MedicineModel.findOne({_id:id})).delete();
+    res.json({status:'ok', hsn: deletedMedicine });
+ })
+
+export const updateMedicineById = asyncErrorHandler(async (req:Request, res:Response) => {
+    const {id} = req.query;
+    const updatedMedicine =  req.body;
+    const deletedMedicine = await MedicineModel.findById(id).updateOne(updatedMedicine);
+    res.json({status:'ok', hsn: deletedMedicine });
+})
