@@ -1,12 +1,14 @@
-// import ProductDeatilSetup from './ProductDeatils/ProductDetailSetup';
+import ProductDetailForm from './ProductDeatils/ProductDetailForm/ProductDetailForm';
 import React from 'react';
 import './App.css';
 import CreateOrder from './VendorDetails/OrderForm/OrderForm';
+import CompanyNameHsnCode from './companyNameHsnCode/companyNameHsnCode'
 
 function App() {
   return (
     // <ProductDeatilSetup/>
-    <CreateOrder/>
+    <CompanyNameHsnCode/>
+    // <CreateOrder/>
   );
 }
 
