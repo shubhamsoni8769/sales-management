@@ -38,7 +38,7 @@ const CreateOrder = () => {
                   values.itemList.map((item, index) => (
                     <div key={index}>
                       <Grid container spacing={2}>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={8}>
                           <Field
                             name={`itemList.${index}.medicineName`}
                             component={AutoComplateField}
@@ -48,7 +48,9 @@ const CreateOrder = () => {
                             setFieldValue={setFieldValue}
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                      </Grid>
+                      <Grid container spacing={2}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.hsnCode`}
                             component={inputTextField}
@@ -57,7 +59,7 @@ const CreateOrder = () => {
                             id="hsnCode"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.companyName`}
                             label="Company Name"
@@ -66,7 +68,7 @@ const CreateOrder = () => {
                             id="companyName"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.batchNumber`}
                             label="Batch Number"
@@ -75,7 +77,7 @@ const CreateOrder = () => {
                             id="batchNumber"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.expiryDate`}
                             component={inputDateField}
@@ -85,7 +87,7 @@ const CreateOrder = () => {
                             format="dd/MM/yyyy"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.availableQuantity`}
                             label="Available Quantity"
@@ -96,7 +98,7 @@ const CreateOrder = () => {
                             id="availableQuantity"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.scheme`}
                             label="Scheme"
@@ -105,7 +107,7 @@ const CreateOrder = () => {
                             id="scheme"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.purchaseRate`}
                             label="Purchase Rate"
@@ -114,7 +116,7 @@ const CreateOrder = () => {
                             id="purchaseRate"
                           />
                         </Grid>
-                        <Grid item xs={1.33}>
+                        <Grid item xs={1.5}>
                           <Field
                             name={`itemList.${index}.salesRate`}
                             label="Sales Rate"
