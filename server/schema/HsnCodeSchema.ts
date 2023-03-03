@@ -1,7 +1,7 @@
 import mongoose, { Model, Schema, Types } from 'mongoose';
 
 // Document interface
-interface HsnCode {
+export interface HsnCode {
     code: string;
     gst: Types.Array<number>;
 }
