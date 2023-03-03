@@ -1,4 +1,3 @@
-import ProductDetailForm from './ProductDeatils/ProductDetailForm/ProductDetailForm';
 import React from 'react';
 import './App.css';
 import CreateOrder from './VendorDetails/OrderForm/OrderForm';

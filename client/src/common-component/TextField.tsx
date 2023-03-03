@@ -26,7 +26,7 @@ const inputTextField = (props: any) => {
         margin="normal"
         onChange={props.field.onChange}
         error={err && touch}
-        value={values[item][index][name]}
+        value={values[item] ? values[item][index][name] : ''}
       />
     );
   };
