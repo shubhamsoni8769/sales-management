@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import CreateOrder from "./VendorDetails/OrderForm/OrderForm";
 import { Box } from "@mui/material";
+import CompanyNameHsnCode from './companyNameHsnCode/companyNameHsnCode'
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             width: { sm: `calc(100% - 188px)` },
           }}
         >
-          <CreateOrder />
+          {/* <CreateOrder /> */}
+          <CompanyNameHsnCode/>
         </Box>
       </Box>
     </>
