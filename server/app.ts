@@ -6,6 +6,7 @@ import { companyRouter } from './routes/companyRoutes.js';
 import { medicineRouter } from './routes/medicineRoutes.js';
 import { NotFoundError } from './errors/NotFoundError.js';
 import { vendorRouter } from './routes/vendorRoutes.js';
+import { batchRouter } from './routes/batchRoutes.js';
 
 
 export const app = express();
@@ -26,6 +27,9 @@ app.use('/api', medicineRouter);
 
 // Vendor
 app.use('/api', vendorRouter);
+
+// Batch
+app.use('/api', batchRouter);
 
 
 app.all('*', (_, __, next) => {

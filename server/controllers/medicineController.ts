@@ -13,10 +13,16 @@ const medicine: Medicine = req.body;
     res.json({status:'ok', medicine: newMedicine });
 })
 
-export const getAllMedicine = asyncErrorHandler(async (req: Request, res: Response) => {
+export const getAllMedicine = asyncErrorHandler(async (_: Request, res: Response) => {
    const medicines = await MedicineModel.find().populate('companyId');
     res.json({medicines, status:'ok'});
 })
+
+
+export const getAllBatchesByMedicineId = asyncErrorHandler(async (_: Request, res: Response) => {
+    const medicineBatches = await MedicineModel.find().populate('batchIds');
+     res.json({medicineBatches, status:'ok'});
+ })
 
 export const deleteMedicineById = asyncErrorHandler(async (req, res) => {
     const {id} = req.query; 

@@ -1,6 +1,6 @@
-import mongoose, { ObjectId, Schema, SchemaTypes, Types } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { Company } from './CompanySchema';
-import { HsnCode } from './HsnCodeSchema';
+import { Batch } from './BatchSchema';
 
 // Document interface
 export interface Medicine {
@@ -9,6 +9,7 @@ export interface Medicine {
     companyId: Company;
     gst: number;
     hsnCode: String;
+    batchIds: Array<Batch>;
 }
 
 
@@ -25,12 +26,18 @@ const medicineSchema = new Schema<Medicine>({
         type: mongoose.Schema.Types.ObjectId, ref:'Company'
     },
     hsnCode:String,
-    gst: Number
+    gst: Number,
+    batchIds: [{
+        type: mongoose.Schema.Types.ObjectId, ref:'Batch'
+    }]
 })
 
 const MedicineModel = mongoose.model('Medicine', medicineSchema);
 
 export default MedicineModel;
+
+
+// While adding new medicine
 
 /**  
 Api Body for medicine
