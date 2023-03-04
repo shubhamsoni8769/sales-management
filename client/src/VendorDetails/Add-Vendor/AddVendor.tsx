@@ -1,50 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { Form, Formik, useFormik } from "formik"
 import { Grid, TextField, Button, Select, MenuItem, InputLabel, FormControl, SelectChangeEvent } from '@mui/material'
 import { validationSchema } from './VendorFormValidation';
 import { vendorFormField } from './model';
 
+const stateList = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+];
 const AddVendor = () => {
-    const [state, setState] = useState('');
-    const [district, setDistrict] = useState('');
-
-    const stateList = [
-        "Andhra Pradesh",
-        "Arunachal Pradesh",
-        "Assam",
-        "Chhattisgarh",
-        "Goa",
-        "Gujarat",
-        "Haryana",
-        "Himachal Pradesh",
-        "Jharkhand",
-    ];
-    const formik = useFormik({
-        initialValues: {
-            firmName: '',
-            personName: '',
-            phoneNumber: '',
-            mobileNumber: '',
-            email: '',
-            state: '',
-            district: '',
-            city: '',
-            address: '',
-            pincode: '',
-            gstin: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values: any) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-
-    })
 
     return (
         <div>
-
-
-
             <Formik
                 initialValues={vendorFormField}
                 validationSchema={validationSchema}
@@ -63,9 +37,6 @@ const AddVendor = () => {
                         </div>
                         <div>
                             <code>values:</code> {JSON.stringify(values, null, 2)}
-                        </div>
-                        <div>
-                            <code>isSubmitting:</code> {JSON.stringify(formik.isSubmitting, null, 2)}
                         </div>
                         <Grid container spacing={4}>
                             <Grid item xs={4}>
@@ -161,7 +132,7 @@ const AddVendor = () => {
                                         name="district"
                                         labelId="district"
                                         id="district"
-                                        value={state}
+                                        value={stateList}
                                         label="Age"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
