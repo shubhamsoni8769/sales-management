@@ -5,17 +5,25 @@ import AutoComplateField from "../../common-component/AutoComplete";
 import inputDateField from "../../common-component/DateField";
 import inputNumberField from "../../common-component/NumberField";
 import inputTextField from "../../common-component/TextField";
-import { initialFormValues as item } from "./model";
+import { IinvoiceOrderFormField, invoiceOrderFormField as item } from "./model";
 import schema from "./OrderFormValidation";
+import { useDispatch, useSelector } from "react-redux";
+import { IinviocerFormInitialState } from "../../types/Vendor";
 
 const CreateOrder = () => {
+  const dispatch = useDispatch();
+  // can be used for update existing form
+  const state = useSelector((state: any) => state.invioceForm);
+  console.log(state, 'state')
   return (
     <Formik
-      initialValues={{
-        itemList: [item]
-      }}
+      initialValues={state}
       validationSchema={schema}
-      onSubmit={(values: any) => { }}
+      onSubmit={(values: IinviocerFormInitialState) => {
+        //TODO: call api here to submit form for vendor
+
+        // dispatch();
+       }}
     >
       {({ values, setFieldValue, touched }) => (
         <Form>
@@ -35,7 +43,7 @@ const CreateOrder = () => {
                 </div>
                 {values.itemList &&
                   values.itemList.length > 0 &&
-                  values.itemList.map((item, index) => (
+                  values.itemList.map((item:IinvoiceOrderFormField, index:number) => (
                     <div key={index}>
                       <Grid container spacing={2}>
                         <Grid item xs={1.33}>
