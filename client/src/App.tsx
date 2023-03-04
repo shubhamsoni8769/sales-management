@@ -3,11 +3,12 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import CreateOrder from "./VendorDetails/OrderForm/OrderForm";
 import { Box } from "@mui/material";
+import AddVendor from "./VendorDetails/Add-Vendor/AddVendor";
 
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Box
         style={{
           display: "flex",
@@ -21,7 +22,7 @@ function App() {
             width: { sm: `calc(100% - 188px)` },
           }}
         >
-          <CreateOrder />
+          <AddVendor />
         </Box>
       </Box>
     </>
