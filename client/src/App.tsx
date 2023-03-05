@@ -22,7 +22,7 @@ function App() {
             width: { sm: `calc(100% - 188px)` },
           }}
         >
-          <AddVendor />
+          <CreateOrder />
         </Box>
       </Box>
     </>

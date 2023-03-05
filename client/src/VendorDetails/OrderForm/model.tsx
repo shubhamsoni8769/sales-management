@@ -1,6 +1,4 @@
-import { number } from "yup"
-
-interface IformValues {
+export interface IinvoiceOrderFormField {
     medicineName: string
     hsnCode: string
     companyName: string,
@@ -12,7 +10,7 @@ interface IformValues {
     salesRate: number | string,
 }
 
-export const initialFormValues:IformValues = {
+export const invoiceOrderFormField: IinvoiceOrderFormField = {
     medicineName: "",
     hsnCode: "",
     companyName: "",
