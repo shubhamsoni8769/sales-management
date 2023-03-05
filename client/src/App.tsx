@@ -1,30 +1,16 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
 import CreateOrder from "./VendorDetails/OrderForm/OrderForm";
-import { Box } from "@mui/material";
 import AddVendor from "./VendorDetails/Add-Vendor/AddVendor";
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+// we are using toast because snack bar in mui doest provide notification stack (inotstack can be used)
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
-      <Box
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          padding: "10px",
-        }}
-      >
-        <Box
-          component="main"
-          sx={{
-            width: { sm: `calc(100% - 188px)` },
-          }}
-        >
-          <CreateOrder />
-        </Box>
-      </Box>
+      <ToastContainer />
+      <CreateOrder />
     </>
   );
 }

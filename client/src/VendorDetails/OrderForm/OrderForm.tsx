@@ -9,6 +9,7 @@ import { IinvoiceOrderFormField, invoiceOrderFormField as item } from "./model";
 import schema from "./OrderFormValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { IinviocerFormInitialState } from "../../types/Vendor";
+import {toast} from "react-toastify"
 
 const CreateOrder = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CreateOrder = () => {
       validationSchema={schema}
       onSubmit={(values: IinviocerFormInitialState) => {
         //TODO: call api here to submit form for vendor
-
+        toast.success('won')
         // dispatch();
        }}
     >
