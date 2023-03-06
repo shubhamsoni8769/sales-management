@@ -1,6 +1,14 @@
-import * as yup from 'yup';
+export const medicineInitialState = {
+    medicineName: "",
+    saltName: "foobar",
+    companyName: "",
+    hsnCode: "",
+    gst: ""
+  };
 
-const validationSchema = yup.object().shape({
+  import * as yup from 'yup';
+
+export const validationSchema = yup.object().shape({
   medicineName: yup
     .string().trim()
     .required('Medical name is required'),
@@ -20,6 +28,3 @@ const validationSchema = yup.object().shape({
     .string()
     .required('GST is required')
 });
-
-export { validationSchema }
-
