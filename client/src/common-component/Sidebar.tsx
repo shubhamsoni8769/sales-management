@@ -12,9 +12,12 @@ function Sidebar({
   depthStep?: number;
   depth?: number;
 }) {
-  const [displayChildren, setdisplayChildren] = useState([] as any);
+  const [displayChildren, setdisplayChildren] = useState(
+    {} as { [key: string]: boolean }
+  );
   function handleClick(data: Sidebarinterface) {
     setdisplayChildren({
+      ...displayChildren,
       [data.label]: !displayChildren?.[data.label],
     });
   }
