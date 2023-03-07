@@ -26,7 +26,7 @@ const validationSchemaHsn = yup.object().shape({
   gst: yup.array().required(" gst percentage is required"),
 });
 
-const hsnPercentage = ["0%", "5%", "10%", "20%"];
+const hsnPercentage = ["0%", "5%", "12%", "18%","20%"];
 const HsnFormField = {
   hsnNo: "",
   gst: [],

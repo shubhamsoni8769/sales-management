@@ -1,6 +1,9 @@
 import React from "react";
 import TabsView from "../../common-component/TabsView";
 import HsnDetails from "../../components/hsnDetails/HsnDetails";
+import ProductDetailSetup from "../../ProductDeatils/ProductDetailSetup";
+import AddVendor from "../../VendorDetails/Add-Vendor/AddVendor";
+import OrderForm from "../../VendorDetails/OrderForm/OrderForm";
 
 
 const Dashboard = () => {
@@ -18,17 +21,17 @@ const Dashboard = () => {
     {
       label: "Medical Details",
       value: "3",
-      content: "Medical Details",
+      content: <ProductDetailSetup/>,
     },
     {
       label: "Vendor Details",
       value: "4",
-      content: "Vendor Details",
+      content: <AddVendor/>,
     },
     {
       label: "Create Invoice",
       value: "5",
-      content: "Create Invoice",
+      content: <OrderForm/>,
     },
     {
       label: "Sales Details",

@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 export const medicineInitialState = {
     medicineName: "",
     saltName: "foobar",
@@ -6,7 +7,7 @@ export const medicineInitialState = {
     gst: ""
   };
 
-  import * as yup from 'yup';
+  
 
 export const validationSchema = yup.object().shape({
   medicineName: yup
