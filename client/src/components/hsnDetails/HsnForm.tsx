@@ -15,18 +15,18 @@ import {
 import * as yup from "yup";
 import HsnTable from "./HsnTable";
 
-export interface HsnDetails {
-    id?:string;
- hsnNo: string;
- gst:string[]
-}
+export type HsnDetails = {
+  id?: string;
+  hsnNo: string;
+  gst: string[];
+};
 
 const validationSchemaHsn = yup.object().shape({
   hsnNo: yup.string().trim().required("hsn No is required"),
-  gst: yup.array().required(" gst percentage is required"),
+  gst: yup.array().of(yup.string()).min(1),
 });
 
-const hsnPercentage = ["0%", "5%", "12%", "18%","20%"];
+const hsnPercentage = ["0%", "5%", "12%", "18%", "20%"];
 const HsnFormField = {
   hsnNo: "",
   gst: [],
@@ -36,10 +36,7 @@ const HsnForm = () => {
   const [hsnDetails, setHsnDetails] = useState<HsnDetails[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
 
-  const handleSubmit = (
-    values:HsnDetails,
-    actions: any
-  ) => {
+  const handleSubmit = (values: HsnDetails, actions: any) => {
     setHsnDetails([
       ...hsnDetails,
       { id: values.hsnNo, hsnNo: values.hsnNo, gst: values.gst },
@@ -48,11 +45,10 @@ const HsnForm = () => {
     setSelected([]);
   };
 
-  const handleChangeSelection = (event: any, values:HsnDetails) => {
+  const handleChangeSelection = (event: any, setFieldValue: any) => {
     const value = event.target.value;
-
+    setFieldValue("gst", value);
     setSelected(value);
-    values.gst = value;
   };
 
   return (
@@ -64,7 +60,14 @@ const HsnForm = () => {
           handleSubmit(values, actions);
         }}
       >
-        {({ values, touched, errors, handleChange, handleBlur }) => (
+        {({
+          values,
+          touched,
+          errors,
+          handleChange,
+          handleBlur,
+          setFieldValue,
+        }) => (
           <Form>
             <h1>HSN</h1>
             <Grid container spacing={4}>
@@ -97,7 +100,7 @@ const HsnForm = () => {
                     labelId="gst"
                     multiple
                     value={selected}
-                    onChange={(e) => handleChangeSelection(e, values)}
+                    onChange={(e) => handleChangeSelection(e, setFieldValue)}
                     renderValue={(selected) => selected.join(", ")}
                   >
                     {hsnPercentage.map((option) => (
