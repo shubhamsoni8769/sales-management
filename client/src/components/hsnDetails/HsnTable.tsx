@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { HsnDetails } from "./HsnForm";
 
-interface HsnTable{
+type HsnTable={
   rowData:HsnDetails[]
 }
 const Hsntable = ({ rowData }:HsnTable) => {
