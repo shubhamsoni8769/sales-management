@@ -14,7 +14,7 @@ import { AppDispatch, RootState } from "../../reduxtoolkit/store";
 import { UPDADTE_INVOICE } from "../../reduxtoolkit/reducers/vendor/invioceFormSlice";
 const CreateOrder = () => {
   const dispatch: AppDispatch = useDispatch();
-  const state = useSelector((state: RootState) => state.invioceFormReducer);
+  const state = useSelector((state: RootState) => state.invioceForm);
   console.log(state, "state");
   return (
     <Formik
