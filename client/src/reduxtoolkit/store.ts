@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import appSlice from "./reducers/app/appSlice";
 import invioceFormSlice from "./reducers/vendor/invioceFormSlice";
 
  export const store =  configureStore({
     reducer : {
-        invioceFormReducer : invioceFormSlice,
+        invioceForm : invioceFormSlice,
+        app:appSlice,
         
     }
  })

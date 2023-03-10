@@ -15,8 +15,8 @@ const Hsntable = ({ rowData }:HsnTable) => {
   }, [rowData]);
 
   const columns = [
-    { field: "hsnNo", headerName: "HSN No." },
-    { field: "gst", headerName: "GST No.",width:150 },
+    { field: "hsnNo", headerName: "HSN No.",width:200,sortable:false },
+    { field: "gst", headerName: "GST No.",width:130,sortable:false },
     {
       field: "actions",
       headerName: "Actions",
@@ -43,6 +43,9 @@ const Hsntable = ({ rowData }:HsnTable) => {
       <DataGrid
         rows={data}
         columns={columns}
+        disableColumnFilter
+        disableColumnMenu
+        
       />
     </div>
   );

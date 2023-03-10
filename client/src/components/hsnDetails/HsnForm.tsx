@@ -14,6 +14,9 @@ import {
 } from "@mui/material";
 import * as yup from "yup";
 import HsnTable from "./HsnTable";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../reduxtoolkit/reducers/app/appSlice";
+
 
 export type HsnDetails = {
   id?: string;
@@ -35,14 +38,17 @@ const HsnFormField = {
 const HsnForm = () => {
   const [hsnDetails, setHsnDetails] = useState<HsnDetails[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
+  const dispatch=useDispatch()
 
   const handleSubmit = (values: HsnDetails, actions: any) => {
     setHsnDetails([
       ...hsnDetails,
       { id: values.hsnNo, hsnNo: values.hsnNo, gst: values.gst },
     ]);
+    console.log(actions)
     actions.resetForm({ values: "" });
     setSelected([]);
+    dispatch(setNotification(true))
   };
 
   const handleChangeSelection = (event: any, setFieldValue: any) => {
@@ -58,6 +64,7 @@ const HsnForm = () => {
         validationSchema={validationSchemaHsn}
         onSubmit={(values: HsnDetails, actions: any) => {
           handleSubmit(values, actions);
+         
         }}
       >
         {({
@@ -69,7 +76,8 @@ const HsnForm = () => {
           setFieldValue,
         }) => (
           <Form>
-            <h1>HSN</h1>
+           
+            <h1>HSN  errors</h1>
             <Grid container spacing={4}>
               <Grid item xs={4}>
                 <TextField
@@ -119,6 +127,7 @@ const HsnForm = () => {
                 type="submit"
                 variant="contained"
                 style={{ height: "56px", top: 30, left: 20 }}
+                // onClick={()=>dispatch(setNotification(true))}
               >
                 Add
               </Button>
