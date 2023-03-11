@@ -7,15 +7,15 @@ const companyFormSlice = createSlice({
   name: "companyForm",
   initialState,
   reducers: {
-    UPDATE_COMPANY: (state, { payload }) => {
+    updateCompany: (state, { payload }) => {
       state.companyName = [...state.companyName, payload];
     },
-    DELETE_COMPANY: (state, { payload }: PayloadAction<IcompanyName>) => {
+    deleteCompany: (state, { payload }: PayloadAction<IcompanyName>) => {
       state.companyName = state.companyName.filter((company) => {
         return company.id !== payload.id;
       });
     },
   },
 });
-export const { UPDATE_COMPANY, DELETE_COMPANY } = companyFormSlice.actions;
+export const { updateCompany, deleteCompany } = companyFormSlice.actions;
 export default companyFormSlice.reducer;

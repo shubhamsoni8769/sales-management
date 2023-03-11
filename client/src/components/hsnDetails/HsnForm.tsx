@@ -18,45 +18,33 @@ import { useDispatch } from "react-redux";
 import { setNotification } from "../../reduxtoolkit/reducers/app/appSlice";
 import { getHsnList } from "../../reduxtoolkit/reducers/hsn/hsnSlice";
 import { AppDispatch } from "../../reduxtoolkit/store";
+import { IHsnDetails } from "../../types/hsndetails";
 
-export type HsnDetails = {
-  id?: string;
-  hsnNo: string;
-  gst: string[];
-};
 
 const validationSchemaHsn = yup.object().shape({
   hsnNo: yup.string().trim().required("hsn No is required"),
-  gst: yup.array().of(yup.string()).min(1),
+  gst: yup.number().required("gst No is required")
 });
 
-const hsnPercentage = ["0%", "5%", "12%", "18%", "20%"];
+const hsnPercentage: number[] = [0, 5, 12, 18, 28];
 const HsnFormField = {
   hsnNo: "",
-  gst: [],
+  gst: "",
 };
 
 const HsnForm = () => {
-  const [hsnDetails, setHsnDetails] = useState<HsnDetails[]>([]);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [hsnDetails, setHsnDetails] = useState<IHsnDetails[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = (values: HsnDetails, actions: any) => {
+  const onSubmit = (values: IHsnDetails, actions: any) => {
     setHsnDetails([
       ...hsnDetails,
       { id: values.hsnNo, hsnNo: values.hsnNo, gst: values.gst },
     ]);
     console.log(actions);
     actions.resetForm({ values: "" });
-    setSelected([]);
     dispatch(setNotification(true));
     dispatch(getHsnList());
-  };
-
-  const handleChangeSelection = (event: any, setFieldValue: any) => {
-    const value = event.target.value;
-    setFieldValue("gst", value);
-    setSelected(value);
   };
 
   return (
@@ -64,8 +52,8 @@ const HsnForm = () => {
       <Formik
         initialValues={HsnFormField}
         validationSchema={validationSchemaHsn}
-        onSubmit={(values: HsnDetails, actions: any) => {
-          handleSubmit(values, actions);
+        onSubmit={(values: IHsnDetails, actions: any) => {
+          onSubmit(values, actions);
         }}
       >
         {({
@@ -74,7 +62,6 @@ const HsnForm = () => {
           errors,
           handleChange,
           handleBlur,
-          setFieldValue,
         }) => (
           <Form>
             <h1>HSN</h1>
@@ -93,34 +80,28 @@ const HsnForm = () => {
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl
-                  error={touched.gst && Boolean(errors.gst)}
+              <FormControl
+                fullWidth
+                error={Boolean(errors.gst && touched.gst)}
+              >
+                <InputLabel htmlFor="gst">Gst</InputLabel>
+                <Select
+                  name="gst"
+                  value={values.gst}
+                  label="gst"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   fullWidth
                 >
-                  <InputLabel
-                    htmlFor="gst"
-                    onBlur={handleBlur}
-                    error={touched.gst && Boolean(errors.gst)}
-                  >
-                    GST
-                  </InputLabel>
-                  <Select
-                    labelId="gst"
-                    multiple
-                    value={selected}
-                    onChange={(e) => handleChangeSelection(e, setFieldValue)}
-                    renderValue={(selected) => selected.join(", ")}
-                  >
-                    {hsnPercentage.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        <ListItemIcon>
-                          <Checkbox checked={selected.indexOf(option) > -1} />
-                        </ListItemIcon>
-                        <ListItemText primary={option} />
+                  {hsnPercentage.map((hsn:number) => {
+                    return (
+                      <MenuItem key={hsn} value={hsn}>
+                        {hsn}
                       </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                    );
+                  })}
+                </Select>
+              </FormControl>
               </Grid>
 
               <Button

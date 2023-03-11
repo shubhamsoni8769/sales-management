@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../reduxtoolkit/store";
-import { DELETE_COMPANY } from "../../reduxtoolkit/reducers/company/companyFormSlice";
+import { deleteCompany } from "../../reduxtoolkit/reducers/company/companyFormSlice";
 function CompanyTable() {
     const dispatch = useDispatch()
     const state = useSelector(( state : RootState ) => state.companyFormReducer.companyName  ) 
@@ -16,7 +16,7 @@ function CompanyTable() {
           width: 400,
           renderCell: (params : any ) => {
             return (
-              <Button onClick={() => dispatch(DELETE_COMPANY(params.row))}>
+              <Button onClick={() => dispatch(deleteCompany(params.row))}>
                 <DeleteIcon style={{ color: "black" }} />
               </Button>
             );

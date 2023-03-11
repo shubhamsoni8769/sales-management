@@ -1,5 +1,5 @@
 export  interface IcompanyName {
-    id: string  ;
+    id: string;
     company : string
   }
   export  interface IcompanyNamestate {

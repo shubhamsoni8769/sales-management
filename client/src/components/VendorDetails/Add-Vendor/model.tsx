@@ -9,6 +9,7 @@ export const vendorFormField = {
     address: '',
     pincode: '',
     gstin: '',
+    dlNumber:''
 
 }
 

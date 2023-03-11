@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
 const schema = yup.object().shape({
+    vendorName: yup.string().required("vandor name required"),
     itemList: yup.array().of(
       yup.object().shape({
         medicineName: yup.string().required("Required"),

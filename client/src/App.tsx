@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import AddVendor from "./VendorDetails/Add-Vendor/AddVendor";
 import "react-toastify/dist/ReactToastify.css";
 import HsnDetails from "./components/hsnDetails/HsnDetails";
-import ProductDetailSetup from "./ProductDeatils/ProductDetailSetup";
-import OrderForm from "./VendorDetails/OrderForm/OrderForm";
 import TabsView from "./common-component/TabsView";
 import NotificationBar from "./common-component/NotificationBar";
 import CompanyDetails from "./components/company/CompanyDetails";
+import OrderForm from "./components/VendorDetails/OrderForm/OrderForm";
+import ProductDetailSetup from "./components/ProductDeatils/ProductDetailSetup";
+import AddVendor from "./components/VendorDetails/Add-Vendor/AddVendor";
 
 // we are using toast because snack bar in mui doest provide notification stack (inotstack can be used)
 //

@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { HsnDetails } from "./HsnForm";
+import { IHsnDetails, IHsnTable } from "../../types/hsndetails";
 
-type HsnTable={
-  rowData:HsnDetails[]
-}
-const Hsntable = ({ rowData }:HsnTable) => {
-  const [data, setData] = useState<HsnDetails[]>(rowData);
+
+const Hsntable = ({ rowData }:IHsnTable) => {
+  const [data, setData] = useState<IHsnDetails[]>(rowData);
 
   useEffect(() => {
     setData(rowData);
@@ -23,7 +21,7 @@ const Hsntable = ({ rowData }:HsnTable) => {
       width: 400,
       renderCell: (params: any) => {
         return (
-          <Button onClick={(e) => handleClick(e, params.row)}>
+          <Button onClick={(e:React.MouseEvent) => handleClick(e, params.row)}>
             <DeleteIcon style={{ color: "black" }} />
           </Button>
         );
@@ -31,8 +29,8 @@ const Hsntable = ({ rowData }:HsnTable) => {
     },
   ];
 
-  const handleClick = (e: any, row: HsnDetails) => {
-    const filteredData = data?.filter((e: HsnDetails) => {
+  const handleClick = (e: React.MouseEvent, row: IHsnDetails) => {
+    const filteredData = data?.filter((e: IHsnDetails) => {
       return e.id !== row.id;
     });
     setData(filteredData);
@@ -45,7 +43,6 @@ const Hsntable = ({ rowData }:HsnTable) => {
         columns={columns}
         disableColumnFilter
         disableColumnMenu
-        
       />
     </div>
   );

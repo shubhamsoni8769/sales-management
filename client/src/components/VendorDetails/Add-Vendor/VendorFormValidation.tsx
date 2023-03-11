@@ -11,6 +11,7 @@ const validationSchema = yup.object().shape({
     address:yup.string().required("Please provide the address"),
     pincode:yup.number().required("Please provide the pincode"),
     gstin:yup.string().required("Please provide GSTIN Number"),
+    dlNumber: yup.string().required("Please provide Dl number")
 })
 
 export { validationSchema }

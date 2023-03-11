@@ -1,17 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { invoiceOrderFormField } from "../../../VendorDetails/OrderForm/model";
+import { initialState } from "../../../components/VendorDetails/OrderForm/model";
 
 const invioceFormSlice = createSlice({
   name: "invioceForm",
-  initialState: {
-    itemList: [invoiceOrderFormField],
-  },
+  initialState: initialState,
   reducers: {
-    UPDADTE_INVOICE: (state, action) => {
+    updateInvoice: (state, action) => {
       state = action.payload;
     },
   },
 });
 
-export const { UPDADTE_INVOICE } = invioceFormSlice.actions;
+export const { updateInvoice } = invioceFormSlice.actions;
 export default invioceFormSlice.reducer;

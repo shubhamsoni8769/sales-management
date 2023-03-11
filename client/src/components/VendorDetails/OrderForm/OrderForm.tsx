@@ -1,49 +1,70 @@
-import { Button, Grid } from "@mui/material";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import { Field, FieldArray, Form, Formik } from "formik";
 import React from "react";
-import AutoComplateField from "../../common-component/AutoComplete";
-import inputDateField from "../../common-component/DateField";
-import inputNumberField from "../../common-component/NumberField";
-import inputTextField from "../../common-component/TextField";
-import { IinvoiceOrderFormField, invoiceOrderFormField as item } from "./model";
+import { initialState } from "./model";
 import schema from "./OrderFormValidation";
 import { useDispatch, useSelector } from "react-redux";
-import { IinviocerFormInitialState } from "../../types/Vendor";
-import { toast } from "react-toastify";
-import { AppDispatch, RootState } from "../../reduxtoolkit/store";
-import { UPDADTE_INVOICE } from "../../reduxtoolkit/reducers/vendor/invioceFormSlice";
+import inputTextField from "../../../common-component/FormField/TextField";
+import inputNumberField from "../../../common-component/FormField/NumberField";
+import inputDateField from "../../../common-component/FormField/DateField";
+import { AppDispatch, RootState } from "../../../reduxtoolkit/store";
+import { updateInvoice } from "../../../reduxtoolkit/reducers/vendor/invioceFormSlice";
+import AutoComplateField from "../../../common-component/FormField/AutoComplete";
+import { IinvioceForm, IinvoiceOrderRows } from "../../../types/Vendor";
+
 const CreateOrder = () => {
   const dispatch: AppDispatch = useDispatch();
   const state = useSelector((state: RootState) => state.invioceForm);
-  console.log(state, "state");
   return (
     <Formik
-      initialValues={state}
+      initialValues={initialState}
       validationSchema={schema}
-      onSubmit={(values: IinviocerFormInitialState) => {
+      onSubmit={(values: IinvioceForm) => {
         //TODO: call api here to submit form for vendor
-        toast.success("won");
-        dispatch(UPDADTE_INVOICE(values));
+        dispatch(updateInvoice(values));
       }}
     >
-      {({ values, setFieldValue, touched }) => (
+      {({ values, setFieldValue, touched, errors, handleChange, handleBlur }) => (
         <Form>
+          <div>
+            <code>VALUES</code> {JSON.stringify(values)}
+          </div>
+          <div>
+            <code>Error</code> {JSON.stringify(errors)}
+          </div>
+          <div>
+            <code>TOUCHED</code> {JSON.stringify(touched)}
+          </div>
+          <FormControl
+            fullWidth
+            error={Boolean(errors.vendorName && touched.vendorName)}
+          >
+            <InputLabel htmlFor="vendorName">Vendor Name</InputLabel>
+            <Select
+              name="vendorName"
+              value={values.vendorName}
+              label="vendorName"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              fullWidth
+            >
+              {['vendor1', 'vendoer2',].map((name: string) => {
+                return (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+
           <FieldArray name="itemList">
             {(arrayHelpers) => (
               <div>
-                <div>
-                  <code>VALUES</code> {JSON.stringify(arrayHelpers.form.values)}
-                </div>
-                <div>
-                  <code>Error</code> {JSON.stringify(arrayHelpers.form.errors)}
-                </div>
-                <div>
-                  <code>TOUCHED</code> {JSON.stringify(touched)}
-                </div>
                 {values.itemList &&
                   values.itemList.length > 0 &&
                   values.itemList.map(
-                    (item: IinvoiceOrderFormField, index: number) => (
+                    (item: IinvoiceOrderRows, index: number) => (
                       <div key={index}>
                         <Grid container spacing={2}>
                           <Grid item xs={1.33}>
@@ -90,13 +111,13 @@ const CreateOrder = () => {
                               clearable={true}
                               index={index}
                               label=""
-                              format="dd/MM/yyyy"
+                              format="mm/yyyy"
                             />
                           </Grid>
                           <Grid item xs={1.33}>
                             <Field
                               name={`itemList.${index}.availableQuantity`}
-                              label="Available Quantity"
+                              label="Reviced quantity"
                               type="number"
                               required
                               component={inputNumberField}
@@ -148,7 +169,7 @@ const CreateOrder = () => {
                 <Button
                   type="button"
                   variant="contained"
-                  onClick={() => arrayHelpers.push(item)}
+                  onClick={() => arrayHelpers.push(initialState)}
                 >
                   {" "}
                   +{" "}

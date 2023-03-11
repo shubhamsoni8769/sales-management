@@ -80,6 +80,18 @@ const AddVendor = () => {
 
                                 />
                             </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    fullWidth
+                                    id="dlNumber"
+                                    name="dlNumber"
+                                    label="Dl number"
+                                    value={values.dlNumber}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={touched.dlNumber && Boolean(errors.dlNumber)}
+                                />
+                            </Grid>
 
                             <Grid item xs={4}>
                                 <TextField

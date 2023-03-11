@@ -3,12 +3,11 @@ import { nanoid } from "@reduxjs/toolkit";
 import { Form, Formik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UPDATE_COMPANY } from "../../reduxtoolkit/reducers/company/companyFormSlice";
-import { RootState } from "../../reduxtoolkit/store";
+import { updateCompany } from "../../reduxtoolkit/reducers/company/companyFormSlice";
 import CompanyTable from "./CompanyTable";
 import { validationSchemaCompany } from "./validations";
 
-const companyForm = {
+const initialstate = {
   company: "",
 };
 
@@ -17,10 +16,10 @@ function CompanyForm() {
   return (
     <div>
       <Formik
-        initialValues={companyForm}
+        initialValues={initialstate}
         validationSchema={validationSchemaCompany}
         onSubmit={(values , {resetForm}) => {
-          dispatch(UPDATE_COMPANY({ ...values, id: nanoid() }));
+          dispatch(updateCompany({ ...values, id: nanoid() }));
           resetForm()
         }}
       >
@@ -30,7 +29,6 @@ function CompanyForm() {
           errors,
           handleChange,
           handleBlur,
-          setFieldValue,
         }) => {
           console.log(values);
           return (
