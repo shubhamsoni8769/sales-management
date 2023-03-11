@@ -7,6 +7,7 @@ import ProductDetailSetup from "./ProductDeatils/ProductDetailSetup";
 import OrderForm from "./VendorDetails/OrderForm/OrderForm";
 import TabsView from "./common-component/TabsView";
 import NotificationBar from "./common-component/NotificationBar";
+import CompanyDetails from "./components/company/CompanyDetails";
 
 // we are using toast because snack bar in mui doest provide notification stack (inotstack can be used)
 //
@@ -19,7 +20,7 @@ const tabs: any = [
   {
     label: "Company",
     value: "2",
-    content: "company",
+    content: <CompanyDetails />,
   },
   {
     label: "Medical Details",
