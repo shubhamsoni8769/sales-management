@@ -77,7 +77,7 @@ const HsnForm = () => {
           setFieldValue,
         }) => (
           <Form>
-            <h1>HSN errors</h1>
+            <h1>HSN</h1>
             <Grid container spacing={4}>
               <Grid item xs={4}>
                 <TextField
