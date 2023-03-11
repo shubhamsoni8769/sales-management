@@ -16,7 +16,8 @@ import * as yup from "yup";
 import HsnTable from "./HsnTable";
 import { useDispatch } from "react-redux";
 import { setNotification } from "../../reduxtoolkit/reducers/app/appSlice";
-
+import { getHsnList } from "../../reduxtoolkit/reducers/hsn/hsnSlice";
+import { AppDispatch } from "../../reduxtoolkit/store";
 
 export type HsnDetails = {
   id?: string;
@@ -38,17 +39,18 @@ const HsnFormField = {
 const HsnForm = () => {
   const [hsnDetails, setHsnDetails] = useState<HsnDetails[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (values: HsnDetails, actions: any) => {
     setHsnDetails([
       ...hsnDetails,
       { id: values.hsnNo, hsnNo: values.hsnNo, gst: values.gst },
     ]);
-    console.log(actions)
+    console.log(actions);
     actions.resetForm({ values: "" });
     setSelected([]);
-    dispatch(setNotification(true))
+    dispatch(setNotification(true));
+    dispatch(getHsnList());
   };
 
   const handleChangeSelection = (event: any, setFieldValue: any) => {
@@ -64,7 +66,6 @@ const HsnForm = () => {
         validationSchema={validationSchemaHsn}
         onSubmit={(values: HsnDetails, actions: any) => {
           handleSubmit(values, actions);
-         
         }}
       >
         {({
@@ -76,8 +77,7 @@ const HsnForm = () => {
           setFieldValue,
         }) => (
           <Form>
-           
-            <h1>HSN  errors</h1>
+            <h1>HSN errors</h1>
             <Grid container spacing={4}>
               <Grid item xs={4}>
                 <TextField
